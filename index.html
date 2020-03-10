@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作品展示</title>
+    <style>
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* h2{
+            color:blue;
+            text-align: center;
+            padding:10px;
+        } */
+
+        #show {
+            outline: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+            background: none;
+            background-color: rgba(50, 50, 50, .6);
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .hide {
+            opacity: 0;
+        }
+        @media screen and (max-width: 768px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+            .img-box {
+                width: 100%;
+                height: auto;
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .img-box img {
+                width: 100%;
+                margin-bottom:20px;
+            }       
+            .img-box .lazyload.icon[src^="images/logo"]{
+                width:100%;
+            }
+            .img-box .lazyload.icon{
+                width:50%;
+            }
+        }
+        @media screen and (min-width: 769px) and (max-width: 1921px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+            .img-box {
+                width: 100%;
+                height: auto;
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .img-box img {
+                height:100vh;
+                margin-bottom:20px;
+            }
+            .img-box .lazyload.icon[src^="images/logo"]{
+                height:100vh;
+            }
+            .img-box .lazyload.widthIcon{
+                width:400px;
+                height:auto;
+            }
+            .img-box .lazyload.icon{
+                height:26vh;
+            }
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+</head>
+
+<body>
+    <!-- <h2>作品展示</h2> -->
+    <button id="show">全屏展示</button>
+    <div class="img-box">
+        <!-- <img class="lazyload" src="images/logo.png" data-original="images/1.gif" />
+        <img class="lazyload" src="images/logo.png" data-original="images/2.gif" />
+        <img class="lazyload" src="images/logo.png" data-original="images/3.gif" />
+        <img class="lazyload widthIcon" src="images/logo.png" data-original="images/4.gif" />
+        <img class="lazyload icon" src="images/logo.png" data-original="images/5.gif" />
+        <img class="lazyload icon" src="images/logo.png" data-original="images/6.gif" /> -->
+        <img class="lazyload" src="images/logo.png" data-original="images/7.gif" />
+
+    </div>
+</body>
+<script>
+    $(function () {
+        //全屏
+        function fullScreen() {
+            var el = document.documentElement;
+            var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+            if (typeof rfs != "undefined" && rfs) {
+                rfs.call(el);
+            };
+            return;
+        }
+        //退出全屏
+        function exitScreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            }
+            else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+            else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            if (typeof cfs != "undefined" && cfs) {
+                cfs.call(el);
+            }
+        }
+        $("img").lazyload()
+        $("img").on("click", function () {
+            let $show = $("#show")
+            if ($show.html() == "退出全屏" && $show.attr("class")) {
+                $show.removeClass("hide")
+            } else if ($show.html() == "退出全屏" && !$show.attr("class")) {
+                $show.addClass("hide")
+            }
+        })
+        $("#show").on("click", function () {
+            let $show = $("#show")
+            if ($show.html() == "全屏展示") {
+                $show.attr("class", "hide")
+                $show.html("退出全屏")
+                fullScreen()
+            } else {
+                $show.removeClass("hide")
+                $show.html("全屏展示")
+                exitScreen()
+            }
+
+        })
+    })
+</script>
+
+</html>
